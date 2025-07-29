@@ -4,10 +4,15 @@ const path = require("path");
 
 const app = express();
 const PORT = 3000;
-const usersFile = path.join(__dirname, "dummyData", "users.json");
+const usersFile = path.join(__dirname, "dummyData", "data.json");
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
+const authRoutes = require("./auth/authRoutes");
+app.use("/auth", authRoutes);
+
+
+
 
 app.get("/users", (req, res) => {
   const users = JSON.parse(fs.readFileSync(usersFile));
